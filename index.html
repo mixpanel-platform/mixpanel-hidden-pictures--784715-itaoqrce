@@ -49,12 +49,12 @@
       var final_ids = [];
       _.each(results, function(result){
         if(result.value.install_only){
-          install_only_ids.result.key[0] = 1;
+          install_only_ids[result.key[0]] = 1;
         }
       });
       _.each(results, function(result){
         if(result.value.ios_ifa){
-          if(install_only_ids.result.value.ios_ifa){
+          if(install_only_ids[result.value.ios_ifa]){
             final_ids.push(result.value.ios_ifa);
           }
         }
