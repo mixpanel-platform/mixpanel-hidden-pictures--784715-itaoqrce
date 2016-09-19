@@ -46,7 +46,7 @@
     var params = {};
     MP.api.jql(script,params).done(function(results) {
       var install_only_ids = {};
-      _.each(results, function(results){
+      _.each(results, function(result){
         console.log(result);
       });
     });
