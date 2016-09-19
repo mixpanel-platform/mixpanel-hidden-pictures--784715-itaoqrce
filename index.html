@@ -46,9 +46,20 @@
     var params = {};
     MP.api.jql(script,params).done(function(results) {
       var install_only_ids = {};
+      var final_ids = [];
       _.each(results, function(result){
-        console.log(result);
+        if(result.value.install_only){
+          install_only_ids.result.key[0] = 1;
+        }
       });
+      _.each(results, function(result){
+        if(result.value.ios_ifa){
+          if(install_only_ids.result.value.ios_ifa){
+            final_ids.push(result.value.ios_ifa);
+          }
+        }
+      })
+      console.log(final_ids);
     });
     </script>
 
