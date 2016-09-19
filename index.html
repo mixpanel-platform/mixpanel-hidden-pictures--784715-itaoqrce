@@ -7,9 +7,48 @@
     <script src="https://cdn.mxpnl.com/libs/mixpanel-platform/build/mixpanel-platform.v0.latest.min.js"></script>
   </head>
   <body class="mixpanel-platform-body">
-    <h1>Hello, World!</h1>
-    <script>
-      // Run queries and display results here
+    <div id="results"></div>
+    
+    <script id="jql">
+    /* JQL query goes here */
+    function main() {
+      return join(
+        Events({
+          from_date: "2016-01-01",
+          to_date: "2016-09-19",
+        }),
+        People()
+      )
+      .filter(function(tup){
+        return tup.event && tup.user;
+      })
+      .groupByUser(function(state, tups){
+        state = state || {
+          'install_only':true,
+        };
+        _.each(tups, function(tup){
+         if(tup.event.name !== 'install'){
+           state.install_only = false;
+         }
+         if(tup.user.properties.$ios_ifa){
+           state.ios_ifa = tup.user.properties.$ios_ifa;
+         }
+        });
+        return state;
+      });
+    }
     </script>
+    
+    <script>
+    var script = $('#jql').html();
+    script = $.trim(script);
+    console.log(script);
+    var params = {};
+    MP.api.jql(script,params).done(function(results) {
+      console.log(results);
+      document.getElementById('results').innerHTML += results;
+    });
+    </script>
+
   </body>
 </html>
