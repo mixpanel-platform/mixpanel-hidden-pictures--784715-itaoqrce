@@ -47,6 +47,7 @@
     MP.api.jql(script,params).done(function(results) {
       var install_only_ids = {};
       var final_ids = [];
+      var ifas_without = []
       
       // For each result, take down a list of the "bad profiles" (only install)
       _.each(results, function(result){
@@ -62,12 +63,15 @@
           // see if it exists in the "bad profile" list generated in the last loop... if so, add it to the final output
           if(install_only_ids[result.value.ios_ifa]){
             final_ids.push(result.value.ios_ifa);
+          }else{
+            ifas_without.push(result.value.ios_ifa);
           }
         }
       })
       //console.log(final_ids);
       console.log(Object.keys(install_only_ids).length);
       console.log(final_ids.length);
+      console.log(ifas_without.length);
     });
     </script>
 
