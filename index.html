@@ -75,7 +75,7 @@
       var base_url = "https://mixpanel.com/report/784715/explore/#user?distinct_id=";
       for(var i = 0; i < 100; i++){
         console.log(base_url+final_ids[i]);
-        document.getElementById('results').innerHTML += "<a href='"+final_ids[i]+"' target='_blank'>Ghost Profile</a><br />";
+        document.getElementById('results').innerHTML += "<a href='"+base_url+final_ids[i]+"' target='_blank'>Ghost Profile</a><br />";
       }
 
     });
