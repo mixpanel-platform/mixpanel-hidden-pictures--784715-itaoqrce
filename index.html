@@ -9,7 +9,7 @@
   <body class="mixpanel-platform-body">
     <img height="100%" width="100%" src="https://raw.githubusercontent.com/mixpanel-platform/mixpanel-hidden-pictures--784715-itaoqrce/master/no_alias_img.png" /><br clear="all" /><br clear="all" />
     
-    <div id="results"><img src="" /></div>
+    <div id="results"><img src="https://raw.githubusercontent.com/mixpanel-platform/mixpanel-hidden-pictures--784715-itaoqrce/master/loading_logofinal_by_zegerdon-d60eb1v.gif" /></div>
     
     <script id="jql">
     /* JQL query goes here */
@@ -77,6 +77,7 @@
       //console.log(final_ids.length);
       //console.log(ifas_without);
       var base_url = "https://mixpanel.com/report/784715/explore/#user?distinct_id=";
+      document.getElementById('results').innerHTML  = "";
       for(var i = 0; i < 100; i++){
         document.getElementById('results').innerHTML += "<a href='"+base_url+final_ids[i]+"' target='_blank'>Ghost Profile</a>";
         document.getElementById('results').innerHTML += "&nbsp;&nbsp;<-->&nbsp;&nbsp;<a href='"+base_url+ifa_to_distinct_id[final_ids[i]]+"' target='_blank'>Live Profile (w/ IFA)</a><br /><br />";
