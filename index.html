@@ -77,8 +77,6 @@
       //console.log(final_ids);
       // console.log(Object.keys(install_only_ids).length);
       console.log(final_ids.length);
-      mixpanel.identify(final_id);
-      mixpanel.people.set({"to_delete":true});
       //console.log(ifas_without);
       var base_url = "https://mixpanel.com/report/784715/explore/#user?distinct_id=";
       document.getElementById('results').innerHTML  = "";
