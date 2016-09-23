@@ -72,6 +72,10 @@
       // console.log(Object.keys(install_only_ids).length);
       console.log(final_ids.length);
       //console.log(ifas_without);
+      var base_url = "https://mixpanel.com/report/784715/explore/#user?distinct_id=";
+      _.each(final_ids, function(id){
+        document.getElementById("results").innerHTML += "<a href='"+base_url+id+"'>Ghost Profile</a><br />";
+      });
     });
     </script>
 
