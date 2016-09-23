@@ -46,6 +46,7 @@
     var params = {};
     MP.api.jql(script,params).done(function(results) {
       var install_only_ids = {};
+      var ifa_to_distinct_id = {};
       var final_ids = [];
       var ifas_without = []
       
@@ -60,6 +61,7 @@
       _.each(results, function(result){
         // if there is an iOS IFA in the prof...
         if(result.value.ios_ifa){
+          ifa_to_distinct_id[result.value.ios_ifa] = result.key[0];
           // see if it exists in the "bad profile" list generated in the last loop... if so, add it to the final output
           if(install_only_ids[result.value.ios_ifa]){
             final_ids.push(result.value.ios_ifa);
@@ -75,7 +77,8 @@
       var base_url = "https://mixpanel.com/report/784715/explore/#user?distinct_id=";
       for(var i = 0; i < 100; i++){
         console.log(base_url+final_ids[i]);
-        document.getElementById('results').innerHTML += "<a href='"+base_url+final_ids[i]+"' target='_blank'>Ghost Profile</a><br />";
+        document.getElementById('results').innerHTML += "<a href='"+base_url+final_ids[i]+"' target='_blank'>Ghost Profile</a>";
+        document.getElementById('results').innerHTML += "&nbsp;&nbsp;<-->&nbsp;&nbsp;<a href='"+base_url+ifa_to_distinct_id[final_ids[i]]+"' target='_blank'>Live Profile (w/ IFA)</a><br /><br />";
       }
 
     });
