@@ -80,9 +80,16 @@
       //console.log(ifas_without);
       var base_url = "https://mixpanel.com/report/784715/explore/#user?distinct_id=";
       document.getElementById('results').innerHTML  = "";
-      for(var i = 0; i < 100; i++){
-        document.getElementById('results').innerHTML += "<a href='"+base_url+final_ids[i]+"' target='_blank'>Ghost Profile</a>";
-        document.getElementById('results').innerHTML += "&nbsp;&nbsp;<-->&nbsp;&nbsp;<a href='"+base_url+ifa_to_distinct_id[final_ids[i]]+"' target='_blank'>Live Profile (w/ IFA)</a><br /><br />";
+      if(final_ids.length > 100){
+        for(var i = 0; i < 100; i++){
+          document.getElementById('results').innerHTML += "<a href='"+base_url+final_ids[i]+"' target='_blank'>Ghost Profile</a>";
+          document.getElementById('results').innerHTML += "&nbsp;&nbsp;<-->&nbsp;&nbsp;<a href='"+base_url+ifa_to_distinct_id[final_ids[i]]+"' target='_blank'>Live Profile (w/ IFA)</a><br /><br />";
+        }
+      }else{
+        for(var i = 0; i < final_ids.length; i++){
+          document.getElementById('results').innerHTML += "<a href='"+base_url+final_ids[i]+"' target='_blank'>Ghost Profile</a>";
+          document.getElementById('results').innerHTML += "&nbsp;&nbsp;<-->&nbsp;&nbsp;<a href='"+base_url+ifa_to_distinct_id[final_ids[i]]+"' target='_blank'>Live Profile (w/ IFA)</a><br /><br />";
+        }
       }
 
     });
